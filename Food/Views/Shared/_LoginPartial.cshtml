@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Food.Entity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    
+    <div class="aa-header-top-right">
+        <ul class="aa-head-top-nav-right">
+            <li class="cart">
+                <span title="Manage">Hello @User.Identity.Name!</span>
+            </li>
+            <li class="cart">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class=" btn btn-link ">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <div class="aa-header-top-right">
+        <ul class="aa-head-top-nav-right">
+            <li class="cart">
+                <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+            <li class="cart">
+                <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </li>
+        </ul>
+    </div>
+}
+

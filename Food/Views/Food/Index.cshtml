@@ -1,0 +1,222 @@
+﻿@model Food.Service.PaginatedList<Food.Models.ProductModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<!-- catg header banner section -->
+<section id="aa-catg-head-banner">
+    <img src="images/banner/banner-desktop.jpeg" alt="fashion img">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>Food</h2>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Food</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / catg header banner section -->
+<!-- product category -->
+<section id="aa-product-category">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-8 col-md-push-3">
+                <div class="aa-product-catg-content">
+
+                    <div class="aa-product-catg-body">
+                        <ul class="aa-product-catg">
+                            <!-- start single product item -->
+                            @{
+                                foreach (var listProductFirst in Model)
+                                {
+                                    <li>
+                                        <figure>
+                                            <a class="aa-product-img" href="/productdetail?id=@listProductFirst.pd_Id"><img src="@listProductFirst.pd_Img1" alt="@listProductFirst.pd_Name"></a>
+                                            <a class="aa-add-card-btn" href="/productdetail?id=@listProductFirst.pd_Id"><span class="fa fa-shopping-cart"></span>Buy</a>
+                                            <figcaption>
+                                                <h4 class="aa-product-title"><a href="#">@listProductFirst.pd_Name</a></h4>
+                                                <span class="aa-product-price">$@listProductFirst.pd_Price</span><span class="aa-product-price"><del>$@listProductFirst.pd_Price</del></span>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                        @*<!-- quick view modal -->
+                        <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <div class="row">
+                                            <!-- Modal view slider -->
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="aa-product-view-slider">
+                                                    <div class="simpleLens-gallery-container" id="demo-1">
+                                                        <div class="simpleLens-container">
+                                                            <div class="simpleLens-big-image-container">
+                                                                <a class="simpleLens-lens-image" data-lens-image="images/view-slider/large/polo-shirt-1.png">
+                                                                    <img src="images/view-slider/medium/polo-shirt-1.png" class="simpleLens-big-image">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="simpleLens-thumbnails-container">
+                                                            <a href="#" class="simpleLens-thumbnail-wrapper"
+                                                               data-lens-image="images/view-slider/large/polo-shirt-1.png"
+                                                               data-big-image="images/view-slider/medium/polo-shirt-1.png">
+                                                                <img src="images/view-slider/thumbnail/polo-shirt-1.png">
+                                                            </a>
+                                                            <a href="#" class="simpleLens-thumbnail-wrapper"
+                                                               data-lens-image="images/view-slider/large/polo-shirt-3.png"
+                                                               data-big-image="images/view-slider/medium/polo-shirt-3.png">
+                                                                <img src="images/view-slider/thumbnail/polo-shirt-3.png">
+                                                            </a>
+
+                                                            <a href="#" class="simpleLens-thumbnail-wrapper"
+                                                               data-lens-image="images/view-slider/large/polo-shirt-4.png"
+                                                               data-big-image="images/view-slider/medium/polo-shirt-4.png">
+                                                                <img src="images/view-slider/thumbnail/polo-shirt-4.png">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Modal view content -->
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div>*@
+                        <!-- / quick view modal -->
+                    </div>
+                    @{
+                        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                    }
+                    <div class="aa-product-catg-pagination">
+                        <nav>
+                            <ul class="pagination">
+                                <li>
+                                    @*<a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        </a>*@
+                                    <a asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                       class="btn btn-default @prevDisabled">
+                                        Previous
+                                    </a>
+
+                                </li>
+                                @if (Model.PageIndex == 1)
+                                {
+
+                                }
+                                else
+                                {
+                                    <li class="page-item ">
+                                        <a asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                       class="btn btn-default @prevDisabled">
+                                            @(Model.PageIndex -1)
+                                        </a>
+                                    </li>
+
+                                }
+
+                                <li class="page-item active">
+                                    <a asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageNumber="@(Model.PageIndex)"
+                                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                       class="btn btn-default @nextDisabled">@Model.PageIndex</a>
+                                </li>
+
+                                <li class="page-item ">
+                                    <a asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                       class="btn btn-default @nextDisabled">
+                                        @(Model.PageIndex +1)
+                                    </a>
+                                </li>
+
+                                <li>
+                                    @*<a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        </a>*@
+                                    <a asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                       class="btn btn-default @nextDisabled">
+                                        Next
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-4 col-md-pull-9">
+                <aside class="aa-sidebar">
+                    <!-- single sidebar -->
+                    <div class="aa-sidebar-widget">
+                        <h3>Category</h3>
+                        <ul class="aa-catg-nav">
+                            @{
+                                foreach (var item in ViewBag.Categories)
+                                {
+                                    string url = "/food?categoriesName=" + item.cg_Name;
+                                    <li><a href="@url">@item.cg_Name </a></li>
+                                };
+                            }
+
+
+                        </ul>
+                    </div>
+
+                    <!-- single sidebar -->
+                    <div class="aa-sidebar-widget">
+                        <h3>Top Rated Products</h3>
+                        <div class="aa-recently-views">
+                            <ul>
+                                @{
+
+                                    for (var i = 0; i < 3; i++)
+                                    {
+                                        <li>
+                                            <a href="/productdetail?id=@ViewBag.topRatedProductsModelQuery[i].pd_Id" class="aa-cartbox-img"><img alt="img" src="@ViewBag.topRatedProductsModelQuery[i].pd_Img1"></a>
+                                            <div class="aa-cartbox-info">
+                                                <h4><a href="/productdetail?id=@ViewBag.topRatedProductsModelQuery[i].pd_Id">@ViewBag.topRatedProductsModelQuery[i].pd_Name</a></h4>
+                                                <p>1 x $@ViewBag.topRatedProductsModelQuery[i].pd_Price</p>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- / product category -->

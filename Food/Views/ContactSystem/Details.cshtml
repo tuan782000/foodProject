@@ -1,0 +1,79 @@
+﻿@model Food.Entity.ContactSystem
+
+@{ ViewData["Title"] = "Details";
+                Layout = "~/Views/Shared/_LayoutAdmin/_LayoutAdmin.cshtml"; }
+
+@*<h2>Details</h2>
+
+<div>
+    <h4>ContactSystem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact_Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contact_Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact_Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contact_Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact_Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contact_Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact_Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contact_Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Contact_Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+
+<div class="card-header">
+    <h3 class="card-title">Detail</h3>
+</div>
+<div class="card-body">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact_Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact_Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact_Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact_Phone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact_Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact_Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact_Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact_Description)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <a asp-action="Edit" asp-route-id="@Model.Contact_Id" style="color:white" class="btn btn-warning" placeholder="Edit">Edit</a>
+        <a asp-action="Index" class="btn btn-primary">Back to list</a>
+    </form>
+</div>

@@ -1,0 +1,216 @@
+﻿@*@model IEnumerable<Food.Models.ReviewModel>*@
+@model Food.Service.PaginatedList<Food.Models.ReviewModel>
+
+@{ ViewData["Title"] = "Comment Management";
+    Layout = "~/Views/Shared/_LayoutAdmin/_LayoutAdmin.cshtml"; }
+
+
+<!--<h3>Comment Management</h3>
+<div >
+    <table class="table">
+        <tr>
+
+            <th>
+                User Comment:
+            </th>
+            <th>
+                Comment:
+            </th>
+            <th>
+                Status:
+            </th>
+            <th>
+                Update Date:
+            </th>
+            <th>
+                ReviewType:
+            </th>
+            <th></th>-->
+@*View in Client site*@
+
+<!--<th></th>-->
+@*Allow/Deny*@
+<!--</tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+
+        <td>@item.review_UserName</td>
+        <td>@item.review_Comment</td>
+        <td>
+            @if (item.review_HideStatus)
+            {
+                <div class="btn btn-danger text-white">Published </div>
+            }
+            else
+            {
+                <div class="btn btn-success text-white">Hiden </div>
+            }
+
+        </td>
+        <td>Update</td>
+        <td>
+            @{
+                if (item.review_ReviewType == "Review")
+                {
+                    <a>Review</a>
+                }
+            }
+        </td>
+        <td><a href="/productdetail?id=@item.review_ProductId"><span>View in Client site</span></a></td>
+        @if (item.review_HideStatus)
+        {
+            <td><a asp-action="AllowAction" asp-route-ReviewId="@item.review_id" asp-route-Type="@item.review_ReviewType" class="btn btn-success btn-lg active h-15 "><span>Allow</span></a></td>
+        }
+        else
+        {
+            <td><a asp-action="DenyAction" asp-route-ReviewId="@item.review_id" asp-route-Type="@item.review_ReviewType"  class="btn btn-danger btn-lg active h-15"><span>Deny</span></a></td>
+
+
+        }
+
+
+    </tr>
+
+       }
+
+
+
+    </table>
+</div>-->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>
+                                User Comment:
+                            </th>
+                            <th>
+                                Comment:
+                            </th>
+                            <th>
+                                Status:
+                            </th>
+                            <th>
+                                Update Date:
+                            </th>
+                            <th>
+                                ReviewType:
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+            <tr>
+                <td class="col-2">@item.review_UserName</td>
+                <td class="col-2">@item.review_Comment</td>
+                <td class="col-2">
+                    @if (item.review_HideStatus)
+                    {
+        <div class="btn btn-danger text-white">Published </div> }
+    else
+    {
+        <div class="btn btn-success text-white">Hiden</div>}
+
+                </td>
+                <td class="col-2">Update</td>
+                <td class="col-2">
+                    @{ if (item.review_ReviewType == "Review")
+                        {
+        <a>Review</a> } }
+                </td>
+                <td class="col-2"><a href="/productdetail?id=@item.review_ProductId"><p class="btn btn-primary">View in Client site</p></a></td>
+                @if (item.review_HideStatus)
+                {
+        <td class="col-2"><a asp-action="AllowAction" asp-route-ReviewId="@item.review_id" asp-route-Type="@item.review_ReviewType" class="btn btn-success btn-lg active h-15 "><span>Allow</span></a></td>
+ }
+    else
+    {
+        <td class="col-2"><a asp-action="DenyAction" asp-route-ReviewId="@item.review_id" asp-route-Type="@item.review_ReviewType" class="btn btn-danger btn-lg active h-15"><span>Deny</span></a></td>
+}
+            </tr>
+}
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            @* Phân trang *@
+            @{ var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : ""; }
+            <div class="aa-product-catg-pagination">
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            @*<a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>*@
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex - 1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @prevDisabled">
+                                Previous
+                            </a>
+
+                        </li>
+                        @if (Model.PageIndex == 1)
+                        {
+
+                        }
+                        else
+                        {
+            <li class="page-item ">
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-default @prevDisabled">
+                    @(Model.PageIndex -1)
+                </a>
+            </li>
+}
+
+                        <li class="page-item active">
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled">@Model.PageIndex</a>
+                        </li>
+
+                        <li class="page-item ">
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled">
+                                @(Model.PageIndex +1)
+                            </a>
+                        </li>
+
+                        <li>
+                            @*<a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>*@
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled">
+                                Next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+</div>

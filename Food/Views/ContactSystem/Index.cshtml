@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Food.Entity.ContactSystem>
+
+@{ ViewData["Title"] = "Index";
+                Layout = "~/Views/Shared/_LayoutAdmin/_LayoutAdmin.cshtml"; }
+
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact_Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact_Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact_Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact_Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Contact_Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Contact_Phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Contact_Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Contact_Description)
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.Contact_Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.Contact_Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Contact_Id">Delete</a>
+    </td>
+</tr>}
+    </tbody>
+</table>*@
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">List of Roles</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Contact_Address)</th>
+                            <th>@Html.DisplayNameFor(model => model.Contact_Phone)</th>
+                            <th>@Html.DisplayNameFor(model => model.Contact_Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.Contact_Description)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr class="col-12">
+                            <td class="col-2">@Html.DisplayFor(modelItem => item.Contact_Address)</td>
+                            <td class="col-2">@Html.DisplayFor(modelItem => item.Contact_Phone)</td>
+                            <td class="col-2">@Html.DisplayFor(modelItem => item.Contact_Email)</td>
+                            <td class="col-4" style="overflow-x: hidden ">@Html.DisplayFor(modelItem => item.Contact_Description)</td>
+                            <td class="col-2">
+                                <a asp-action="Edit" asp-route-id="@item.Contact_Id" class="btn btn-warning" placeholder="Edit"> <i class="fa fa-edit" style="color:white;" aria-hidden="true"></i></a>
+                                <a asp-action="Details" asp-route-id="@item.Contact_Id" class="btn btn-primary" placeholder="Detail"> <i class="fa fa-eye" aria-hidden="true"></i></a>
+                                <a asp-action="Hidden" asp-route-id="@item.Contact_Id" class="btn btn-danger" placeholder="Delete"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+}
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>

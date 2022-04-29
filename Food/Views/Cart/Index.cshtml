@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Food.Models.ProductInCartModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+  <!-- catg header banner section -->
+  <section id="aa-catg-head-banner">
+   <img src="~/images/banner/foodservice-mfg-hero-1920x300.jpg" alt="fashion img">
+   <div class="aa-catg-head-banner-area">
+     <div class="container">
+      <div class="aa-catg-head-banner-content">
+        <h2>Cart Page</h2>
+        <ol class="breadcrumb">
+          <li><a href="index.html">Home</a></li>                   
+          <li class="active">Cart</li>
+        </ol>
+      </div>
+     </div>
+   </div>
+  </section>
+  <!-- / catg header banner section -->
+
+ <!-- Cart view section -->
+ <section id="cart-view">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="cart-view-area">
+           <div class="cart-view-table">
+             <form action="">
+               <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach(var item in Model)
+                            {
+                                int totalPriceInProduct = item.Quantity * item.ProductPrice;
+                                <tr>
+                                    <td><a class="remove" href="/cart/remove?id=@item.ProductId"><fa class="fa fa-close"></fa></a></td>
+                                    <td><a href="#"><img src="@item.ProductImg1" alt="img"></a></td>
+                                    <td><a class="aa-cart-title" href="/productdetail?id=@item.ProductId">@item.ProductName</a></td>
+                                    <td>$@item.ProductPrice</td>
+                                    <td><span>@item.Quantity</span></td>
+                                    <td>$@totalPriceInProduct</td>
+                                </tr>           
+                            }
+                        }
+                      <tr>
+                        <td colspan="6" class="aa-cart-view-bottom">
+                          
+                        </td>
+                      </tr>
+                      </tbody>
+                  </table>
+                </div>
+             </form>
+             <form asp-action="addCoupon" method="post">
+                 <div >
+                    <input class="aa-coupon-code" type="text" name="coupon" placeholder="Coupon">
+                    <input class="aa-cart-view-btn" type="submit" value="Apply Coupon">
+                </div>
+             </form>
+             <!-- Cart Total view -->
+             <div class="cart-view-total">
+               <h4>Cart Totals</h4>
+               <table class="aa-totals-table">
+                 <tbody>
+                     <tr>
+                     <th>Subtotal</th>
+                     <td>$@ViewBag.Subtotal</td>
+                   </tr>
+                   <tr>
+                     <th>Discount</th>
+                     <td>@ViewBag.CouponPrice</td>
+                   </tr>
+                   <tr>
+                     <th>Shipping</th>
+                     <td>$@ViewBag.Ship</td>
+                   </tr>
+                   <tr>
+                     <th>Total</th>
+                     <td>$@ViewBag.total </td>
+                   </tr>
+                 </tbody>
+               </table>
+               <a href="/checkout" class="aa-cart-view-btn">Proced to Checkout</a>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+ <!-- / Cart view section -->
+
+
+<script>
+    function addPaid() {
+        var couponCode = document.querySelector("#page > div.colorlib-product > div > div:nth-child(3) > div > div > div > div.col-sm-8 > form > div > div.col-sm-9 > input").value;
+
+        var paidButton = document.querySelector("#page > div.colorlib-product > div > div:nth-child(3) > div > div > div > div.col-sm-8 > form > div > div.col-sm-3 > a");
+        paidButton.href = "/cart/paid?coupon=" + couponCode;
+    }
+</script>

@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Food", "Food\Food.csproj", "{FB0EF3DE-C418-40E8-BF2A-BC4BC27E181F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB0EF3DE-C418-40E8-BF2A-BC4BC27E181F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB0EF3DE-C418-40E8-BF2A-BC4BC27E181F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB0EF3DE-C418-40E8-BF2A-BC4BC27E181F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB0EF3DE-C418-40E8-BF2A-BC4BC27E181F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {865DBED5-0A15-4772-8129-A723537515AC}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.TextStylePolicy = $10
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.scope = text/x-csharp
+		$4.FileWidth = 80
+		$4.TabsToSpaces = True
+		$4.scope = text/plain
+		$5.inheritsSet = null
+		$5.scope = text/x-vs
+		$6.inheritsSet = null
+		$6.scope = text/x-css
+		$0.CSSFormattingPolicy = $11
+		$7.AutomaticFormatting = True
+		$7.BracePositions = SemiExpanded
+		$7.FormatOnPaste = True
+		$7.HierarchicalIndentation = True
+		$7.scope = text/x-css
+		$8.inheritsSet = null
+		$8.scope = text/x-json
+		$0.JSONFormattingPolicy = $9
+		$9.AutoStructureCompletion = True
+		$9.BracePositions = SemiExpanded
+		$9.FormatOnPaste = True
+		$9.scope = text/x-json
+		$10.inheritsSet = null
+		$10.scope = text/x-scss-web
+		$11.inheritsSet = null
+		$11.scope = text/x-scss-web
+		$0.VersionControlPolicy = $12
+	EndGlobalSection
+EndGlobal

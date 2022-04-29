@@ -1,0 +1,178 @@
+﻿@model IEnumerable<Food.Models.OrderConfirmationModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin/_LayoutAdmin.cshtml";
+    int i = 0;
+    int total = 0;
+}
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    @{
+        foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="invoice-title">
+                        <h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <table>
+                                <tr>
+                                    <th colspan="2"> Bill to:</th>
+                                </tr>
+
+                                <tr>
+                                    <th>User Name:</th>
+                                    <td>@item.OrderC_UserName</td>
+                                </tr>
+                                <tr>
+                                    <th>First Name:</th>
+                                    <td>@item.OrderC_FirstName</td>
+                                </tr>
+                                <tr>
+                                    <th>Last Name:</th>
+                                    <td>@item.OrderC_LastName</td>
+                                </tr>
+                                <tr>
+                                    <th>Phone Number:</th>
+                                    <td>@item.OrderC_PhoneNumber</td>
+                                </tr>
+                                <tr>
+                                    <th>Address:</th>
+                                    <td>@item.OrderC_Address</td>
+                                </tr>
+                                <tr>
+                                    <th>Email:</th>
+                                    <td>@item.OrderC_Email</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <table>
+                                <tr>
+                                    <th>Payment Method:</th>
+                                </tr>
+                                <tr>
+                                    <td>@item.OrderC_PaymentMethod</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <table>
+                                <tr>
+                                    <th>Order Date:</th>
+                                </tr>
+                                <tr>
+                                    <td>@item.OrderC_DatetimeOrder</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong>Order summary</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <td><strong>Item</strong></td>
+                                            <td class="text-center"><strong>Price</strong></td>
+                                            <td class="text-center"><strong>Quantity</strong></td>
+                                            <td class="text-right"><strong>Totals</strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- foreach ($order->lineItems as $line) or some such thing here -->
+
+
+
+                                        @foreach (var itemProduct in item.OrderC_ProductIdList)
+                                        {
+                                            if (itemProduct != "")
+                                            {
+                                                int price = Int16.Parse(@item.OrderC_PriceList[i]);
+                                                int quantity = Int16.Parse(@item.OrderC_ProductQuantityList[i]);
+                                                int totalProduct = price * quantity;
+                                                total = total + totalProduct;
+
+                                                <tr>
+                                                    <td>@item.OrderC_ProductNameList[i]</td>
+                                                    <td class="text-center">$@item.OrderC_PriceList[i]</td>
+                                                    <td class="text-center">@item.OrderC_ProductQuantityList[i]</td>
+                                                    <td class="text-right">$@totalProduct</td>
+                                                </tr>
+
+                                                i++;
+                                            }
+                                        }
+
+
+
+
+                                        <tr>
+                                            <td class="thick-line"></td>
+                                            <td class="thick-line"></td>
+                                            <td class="thick-line text-center"><strong>Discount</strong></td>
+                                            <td class="thick-line text-right">$@item.OrderC_Discount</td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td class="no-line"></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line text-center"><strong>Shipping</strong></td>
+                                            <td class="no-line text-right">$@item.OrderC_Shiping</td>
+                                        </tr>
+                                        @{
+                                            int ship = item.OrderC_Shiping;
+                                            int discount = item.OrderC_Discount;
+
+                                            total = total + ship - discount;
+                                        }
+
+                                        <tr>
+                                            <td class="no-line"></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line text-center"><strong>Total</strong></td>
+                                            <td class="no-line text-right">$@total</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                @if (item.OrderC_Confirm)
+                                {
+                                    <a asp-action="EditConfirmed" asp-route-id="@item.OrderC_BillId" class="btn btn-danger ">Confirmed</a> //convert from confirmed to confirm
+                                }
+                                else
+                                {
+                                    <a asp-action="EditConfirm" asp-route-id="@item.OrderC_BillId" class="btn btn-primary ">Confirm</a>//convert from confirm to confirmed
+                                }
+                                <a asp-action="Index" class="btn btn-primary">Back to list</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    }
+</div>

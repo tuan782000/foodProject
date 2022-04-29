@@ -1,0 +1,90 @@
+﻿@model Food.Entity.Products
+
+@{ ViewData["Title"] = "Edit";
+                Layout = "~/Views/Shared/_LayoutAdmin/_LayoutAdmin.cshtml"; }
+
+<div class="card-header">
+    <h3 class="card-title">Edit</h3>
+</div>
+<div class="card-body">
+    <form asp-action="Edit" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="pd_Id" />
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="pd_Name" class="control-label"></label>
+                    <input asp-for="pd_Name" class="form-control" />
+                    <span asp-validation-for="pd_Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="pd_Description" class="control-label"></label>
+                    <input asp-for="pd_Description" class="form-control" />
+                    <span asp-validation-for="pd_Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="pd_Price" class="control-label"></label>
+                    <input asp-for="pd_Price" class="form-control" />
+                    <span asp-validation-for="pd_Price" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="pd_ReducePrice" class="control-label"></label>
+                    <input asp-for="pd_ReducePrice" class="form-control" />
+                    <span asp-validation-for="pd_ReducePrice" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="pd_Img1" class="control-label"></label>
+                    <input asp-for="pd_Img1" class="form-control" />
+                    <span asp-validation-for="pd_Img1" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="pd_Img2" class="control-label"></label>
+                    <input asp-for="pd_Img2" class="form-control" />
+                    <span asp-validation-for="pd_Img2" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="pd_Img3" class="control-label"></label>
+                    <input asp-for="pd_Img3" class="form-control" />
+                    <span asp-validation-for="pd_Img3" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="pd_Img4" class="control-label"></label>
+                    <input asp-for="pd_Img4" class="form-control" />
+                    <span asp-validation-for="pd_Img4" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="pd_Rate" class="control-label"></label>
+                    <input asp-for="pd_Rate" class="form-control" />
+                    <span asp-validation-for="pd_Rate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label asp-for="pd_ShortDescription" class="control-label"></label>
+                    <input asp-for="pd_ShortDescription" class="form-control" />
+                    <span asp-validation-for="pd_ShortDescription" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-success" />
+            <a asp-action="Index" class="btn btn-primary">Back to list</a>
+        </div>
+    </form>
+</div>

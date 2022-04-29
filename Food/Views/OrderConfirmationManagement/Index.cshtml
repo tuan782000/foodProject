@@ -1,0 +1,121 @@
+﻿@*@model IEnumerable<Food.Models.OrderConfirmationModel>*@
+@model Food.Service.PaginatedList<Food.Models.OrderConfirmationModel> 
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin/_LayoutAdmin.cshtml"; }
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Order Id</th>
+                            <th>UserName</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Shipping</th>
+                            <th>Discount</th>
+                            <th>Total price</th>
+                            <th>Confirm</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+            <tr>
+                <td class="col-5">@item.OrderC_BillId</td>
+                <td class="col-5">@item.OrderC_UserName</td>
+                <td class="col-5">@item.OrderC_FirstName</td>
+                <td class="col-5">@item.OrderC_LastName</td>
+                <td class="col-5">@item.OrderC_Email</td>
+                <td class="col-5">@item.OrderC_Shiping</td>
+                <td class="col-5">@item.OrderC_Discount</td>
+                <td class="col-5">@item.OrderC_TotalPrice</td>
+                <td class="col-5">@item.OrderC_Confirm</td>
+
+                <td><a class="btn btn-primary" asp-action="Details" asp-route-id="@item.OrderC_BillId">Detail</a></td>
+
+                <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.OrderC_BillId">Delete</a></td>
+            </tr>
+}
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            @{ var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                            var nextDisabled = !Model.HasNextPage ? "disabled" : ""; }
+            <div class="aa-product-catg-pagination">
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            @*<a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>*@
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex - 1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @prevDisabled">
+                                Previous
+                            </a>
+
+                        </li>
+                        @if (Model.PageIndex == 1)
+                        {
+
+                        }
+                        else
+                        {
+            <li class="page-item ">
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-default @prevDisabled">
+                    @(Model.PageIndex -1)
+                </a>
+            </li>}
+
+                        <li class="page-item active">
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled">@Model.PageIndex</a>
+                        </li>
+
+                        <li class="page-item ">
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled">
+                                @(Model.PageIndex +1)
+                            </a>
+                        </li>
+
+                        <li>
+                            @*<a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>*@
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled">
+                                Next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+
+
+<script src="~/js/OrderConfirmationManagement.js"></script>

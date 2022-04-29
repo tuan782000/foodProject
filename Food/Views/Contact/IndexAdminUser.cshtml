@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Food.Entity.ContactUsers>
+
+@{
+    ViewData["Title"] = "IndexAdminUser";
+    Layout = "~/Views/Shared/_LayoutAdmin/_LayoutAdmin.cshtml";
+}
+
+<h1>IndexAdminUser</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cu_FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cu_LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cu_Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cu_Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cu_Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cu_FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cu_LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cu_Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cu_Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cu_Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.cu_Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.cu_Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.cu_Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,83 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bootstrap-show-modal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
+    <!--<link rel="stylesheet" href="./node_modules/prismjs/themes/prism-tomorrow.css"/>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+    <section class="container py-5">
+        <h1>bootstrap-show-notification</h1>
+        <p>
+            A jQuery plugin wrapper around Bootstrap 4 Alerts, to create fixed Alerts (also called Notifications)
+            dynamically in
+            JavaScript.
+        </p>
+        <h2>Examples</h2>
+        <p>
+            <button type="button" id="button-show-simple" class="btn btn-primary">Show a simple notification</button>
+        </p>
+        <p>
+            <button type="button" id="button-show-info" class="btn btn-info">
+                Show a more complex info-notification with
+                Button handling
+            </button>
+        </p>
+        <p>
+            <button type="button" id="button-show-danger" class="btn btn-danger">Show a danger-notification</button>
+        </p>
+        <p>
+            <button type="button" id="button-show-sticky" class="btn btn-secondary">
+                Show a sticky notification with infinite
+                duration
+            </button>
+        </p>
+
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
+    <script src="/assets/js/bootstrap-show-notification.js"></script>
+    <script>
+    $("#button-show-simple").click(function () {
+        $.showNotification({body: "Hello Notification!"});
+        $.showNotification({
+            body: "Danger!", type: "danger"
+        })
+
+    })
+    $("#button-show-info").click(function () {
+        const notification = $.showNotification({
+            body: "<h3>For your Info</h3><p>This notification has a headline and more text than the previous one.</p><div><button class='btn btn-info mr-3'>Click me</button><button class='btn btn-outline-info'>Close this Notification</button></div>",
+            type: "info",
+            duration: 1000
+        })
+        notification.$element[0].querySelector(".btn-info").addEventListener("click", () => {
+            $.showNotification({
+                body: "Thank you for clicking", type: "success", direction: "append"
+            })
+        })
+        notification.$element[0].querySelector(".btn-outline-info").addEventListener("click", () => {
+            notification.$element.alert("close")
+        })
+    })
+    $("#button-show-danger").click(function () {
+        $.showNotification({
+            body: "Danger!", type: "danger"
+        })
+    })
+    $("#button-show-sticky").click(function () {
+        $.showNotification({
+            body: "This notification will stay", type: "secondary", duration: 0
+        })
+    })
+    </script>
+</body>
+</html>

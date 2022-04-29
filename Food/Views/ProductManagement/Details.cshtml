@@ -1,0 +1,151 @@
+﻿@model Food.Entity.Products
+
+@{ ViewData["Title"] = "Details";
+                Layout = "~/Views/Shared/_LayoutAdmin/_LayoutAdmin.cshtml"; }
+
+@*<h1>Details</h1>
+
+<div>
+    <h4>Products</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_ReducePrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_ReducePrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Img1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Img1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Img2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Img2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Img3)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Img3)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Img4)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Img4)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Rate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Rate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_ShortDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_ShortDescription)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.pd_Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+
+<div class="card-header">
+    <h3 class="card-title">Detail</h3>
+</div>
+<div class="card-body">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_ReducePrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_ReducePrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Img1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Img1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Img2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Img2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Img3)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Img3)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Img4)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Img4)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_Rate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_Rate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.pd_ShortDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.pd_ShortDescription)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <a asp-action="Edit" asp-route-id="@Model.pd_Id" style="color:white" class="btn btn-warning" placeholder="Edit">Edit</a>
+        <a asp-action="Index" class="btn btn-primary">Back to list</a>
+    </form>
+</div>

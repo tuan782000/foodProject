@@ -1,0 +1,54 @@
+﻿@model Food.Entity.Coupons
+
+@{ ViewData["Title"] = "Details";
+                Layout = "~/Views/Shared/_LayoutAdmin/_LayoutAdmin.cshtml"; }
+
+@*<h2>Details</h2>
+
+<div>
+    <h4>Coupons</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.couponCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.couponCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.couponPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.couponPrice)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.couponId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+<div class="card-header">
+    <h3 class="card-title">Detail</h3>
+</div>
+<div class="card-body">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.couponCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.couponCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.couponPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.couponPrice)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <a asp-action="Edit" asp-route-id="@Model.couponId" style="color:white" class="btn btn-warning" placeholder="Edit">Edit</a>
+        <a asp-action="Index" class="btn btn-primary">Back to list</a>
+    </form>
+</div>

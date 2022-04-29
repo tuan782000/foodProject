@@ -1,0 +1,120 @@
+﻿@*@model IEnumerable<Food.Entity.Products>*@
+ @model Food.Service.PaginatedList<Food.Entity.Products> 
+
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin/_LayoutAdmin.cshtml"; }
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">List of Product</h3>
+
+                <div class="card-tools">
+                    <a asp-action="Create" class="btn btn-success btn-sm" style="width: 50px;" placeholder="Create new"> <i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>ReducePrice</th>
+                            <th>Rate</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+            <tr>
+                <td class="col-5">@Html.DisplayFor(modelItem => item.pd_Name)</td>
+                <td class="col-5">@Html.DisplayFor(modelItem => item.pd_Description)</td>
+                <td class="col-5">@Html.DisplayFor(modelItem => item.pd_Price)</td>
+                <td class="col-5">@Html.DisplayFor(modelItem => item.pd_ReducePrice)</td>
+                <td class="col-5">@Html.DisplayFor(modelItem => item.pd_Rate)</td>
+                <td class="col-2">
+                    <a asp-action="Edit" asp-route-id="@item.pd_Id" class="btn btn-warning" placeholder="Edit"> <i class="fa fa-edit" style="color:white;" aria-hidden="true"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.pd_Id" class="btn btn-primary" placeholder="Detail"> <i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a asp-action="Hidden" asp-route-id="@item.pd_Id" class="btn btn-danger" placeholder="Delete"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>}
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            @{ var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : ""; }
+            <div class="aa-product-catg-pagination">
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            @*<a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>*@
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex - 1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @prevDisabled">
+                                Previous
+                            </a>
+
+                        </li>
+                        @if (Model.PageIndex == 1)
+                        {
+
+                        }
+                        else
+                        {
+            <li class="page-item ">
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-default @prevDisabled">
+                    @(Model.PageIndex -1)
+                </a>
+            </li>
+}
+
+                        <li class="page-item active">
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled">@Model.PageIndex</a>
+                        </li>
+
+                        <li class="page-item ">
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled">
+                                @(Model.PageIndex +1)
+                            </a>
+                        </li>
+
+                        <li>
+                            @*<a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>*@
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled">
+                                Next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+</div>

@@ -1,0 +1,119 @@
+﻿@page "/register"
+@model RegisterModel
+@{ ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_LayoutLogin/_LayoutLogin.cshtml"; }
+<link href="~/css/captcha.css" rel="stylesheet" />
+
+
+
+@*<div class="row">
+        <div class="col-md-4">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post" onsubmit="return checkform(this);">
+                <h4>Create a new account.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                 START CAPTCHA
+                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+
+                 END CAPTCHA
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+
+    </div>*@
+
+
+<div class="register-box">
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+            <a asp-area="Views" asp-page="/Home/Index" class="h1"><b>Food-T</b></a>
+        </div>
+        <div class="card-body">
+            <p class="login-box-msg">Register a new membership</p>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post" onsubmit="return checkform(this);">
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Email" asp-for="Input.Email">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+               
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password" asp-for="Input.Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Retype password" asp-for="Input.ConfirmPassword">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="icheck-primary">
+                            @*<input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                    <label for="agreeTerms">
+                        I agree to the <a href="#">terms</a>
+                    </label>*@
+                            <!-- START CAPTCHA -->
+                            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                            <!-- END CAPTCHA -->
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+            @*<div class="social-auth-links text-center">
+                    <a href="#" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i>
+                        Sign up using Facebook
+                    </a>
+                    <a href="#" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i>
+                        Sign up using Google+
+                    </a>
+                </div>*@
+
+            <a asp-area="Identity" asp-page="/Account/Login" class="text-center">I already have a membership</a>
+        </div>
+        <!-- /.form-box -->
+    </div><!-- /.card -->
+</div>
+
+
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+
+@*@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}*@
