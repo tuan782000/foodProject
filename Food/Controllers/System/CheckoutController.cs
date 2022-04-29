@@ -136,6 +136,15 @@ namespace Food.Controllers.System
 
                 query = query.Where(x => x.d.Id == userId);
 
+                // Save Phone and Address
+                var queryUser = _context.AppUser.FirstOrDefault(a => a.Id == userId);
+                queryUser.PhoneNumber = phone;
+                queryUser.bill_Address1 = address1;
+                queryUser.LastName = lastName;
+                queryUser.FirstName = firstName;
+                _context.AppUser.Update(queryUser);
+
+
                 //Create checkout model -- 2
                 var cartDetail = query.Select(a => new CheckOutModel()
                 {
@@ -242,9 +251,18 @@ namespace Food.Controllers.System
                 // No login
                 string emailCreate = Request.Form["Email"];
                 string firstNameCreate = Request.Form["FirstName"];
-                var user = new AppUser { UserName = emailCreate, Email = emailCreate, EmailConfirmed = true };
-                var result = await _UserManager.CreateAsync(user, "123@123Aa");
+                var user = new AppUser { 
+                    FirstName = firstName,
+                    LastName = lastName,
+                    UserName = emailCreate, 
+                    Email = emailCreate, 
+                    EmailConfirmed = true,
+                    PhoneNumber = phone,
+                    bill_Address1 = address1
 
+            };
+                var result = await _UserManager.CreateAsync(user, "123@123Aa");
+                
                 string mess = "Account:" + emailCreate + " | Password: 123@123Aa";
 
 
